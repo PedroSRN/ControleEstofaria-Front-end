@@ -1,1 +1,29 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Gemunu+Libre:wght@400;600;700;800&display=swap');
+
+* {
+  font-family: 'Gemunu Libre', sans-serif;
+}
+
+.bg-grey {
+  background-color: #f3f3f393 !important;
+}
+
+.bg-light {
+  background-color: #ffffff !important;
+}
+
+.link {
+  font-size: 18px;
+}
+
+.nav-link {
+  transition: all 100ms ease-in-out;
+}
+
+.nav-link:hover{
+  color: #093679 !important;
+}
+
+#img-redonda{
+  border-radius: 5%;
+}

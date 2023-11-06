@@ -1,0 +1,26 @@
+<section class="mt-5">
+  <div class="container">
+    <div class="card">
+      <div class="row align-itens-center gy-3 p-5" *ngIf="(usuarioLogado$ | async) as usuarioLogado">
+        <div class="col-12 col-md-7">
+          <h1 class="card-title fw-semibold text-danger">Painel do Usuário</h1>
+
+          <h2 class="fw-semibold fs-4">{{ usuarioLogado.nome }}</h2>
+          <section id="info" class="fw-5">
+            <p class="mt-4">O <span class="text-danger fw-semibold">Controle de Estofaria</span> busca ajudar no gerenciamento
+               da rotina diária de uma estofaria, fazendo o gerenciamento de seus clientes, serviços e suas finanças.</p>
+            <p class="text-danger fw-semibold">O que voce deseja gerenciar?</p>
+          </section>
+          <section id="buttons" class="d-grid d-md-flex gap-2">
+            <a class="btn btn-dark" routerLink="/clientes"><i class="bi bi-people-fill"></i> Clientes</a>
+          </section>
+        </div>
+
+        <div class="col-12 col-md-5">
+          <img id="img-redonda" src="/assets/banco-carro.png" class="img-fluid ">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
