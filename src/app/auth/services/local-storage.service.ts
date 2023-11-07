@@ -11,13 +11,13 @@ export class LocalStorageService {
 
 
   public salvarTokenUsuario(token: string){
-    localStorage.setItem('controleEstofaria.token', token)
+    localStorage.setItem('ControleEstofaria.token', token)
   }
 
   public salvarUsuario(usuario: UsuarioTokenViewModel){
     const jsonString = JSON.stringify(usuario);
 
-    localStorage.setItem('controleEstofaria.usuario', jsonString);
+    localStorage.setItem('ControleEstofaria.usuario', jsonString);
   }
 
   public obterUsuarioLogado() {
@@ -27,5 +27,9 @@ export class LocalStorageService {
       return JSON.parse(usuarioJson) as UsuarioTokenViewModel;
 
     return null;
+  }
+
+  public obterTokenUsuario(): string {
+    return localStorage.getItem('ControleEstofaria.token') ?? '';
   }
 }

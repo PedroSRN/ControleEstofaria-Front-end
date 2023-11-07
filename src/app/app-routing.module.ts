@@ -7,14 +7,19 @@ import { LoginGuard } from './auth/services/login.guard';
 
 
 const routes: Routes = [
-  {path: '', redirectTo: 'conta/autenticar', pathMatch: 'full'},
-  {path: 'conta/autenticar', component: LoginComponent, canActivate: [LoginGuard]},
-  {path: 'conta/registrar', component: RegistroComponent, canActivate: [LoginGuard]},
+  { path: '', redirectTo: 'conta/autenticar', pathMatch: 'full'},
+  { path: 'conta/autenticar', component: LoginComponent, canActivate: [LoginGuard] },
+  { path: 'conta/registrar', component: RegistroComponent, canActivate: [LoginGuard] },
   {
     path: 'dashboard',
     loadChildren: () => import('./dashboard/dashboard.module')
       .then(m => m.DashboardModule),
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'clientes',
+    loadChildren: () => import('./clientes/cliente.module')
+      .then(m => m.ClienteModule)
   }
 ];
 
