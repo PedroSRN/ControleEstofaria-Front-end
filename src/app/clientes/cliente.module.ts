@@ -7,19 +7,22 @@ import { ListarClienteComponent } from './listar/listar-cliente.component';
 import { ClienteService } from './services/cliente.service';
 import { InserirClienteComponent } from './inserir/inserir-cliente.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { EditarClienteComponent } from './editar/editar-cliente.component';
+import { FormsClienteResolver } from './services/forms-cliente.resolver';
 
 
 @NgModule({
   declarations: [
     ClienteAppComponent,
     ListarClienteComponent,
-    InserirClienteComponent
+    InserirClienteComponent,
+    EditarClienteComponent
   ],
   imports: [
     CommonModule,
     ClienteRoutingModule,
     ReactiveFormsModule
   ],
-  providers: [ClienteService]
+  providers: [ClienteService, FormsClienteResolver]
 })
 export class ClienteModule { }

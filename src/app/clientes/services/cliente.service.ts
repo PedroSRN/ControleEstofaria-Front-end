@@ -23,6 +23,14 @@ export class ClienteService {
     return resposta;
   }
 
+  public editar(cliente: FormsClienteViewModel): Observable<FormsClienteViewModel> {
+    const resposta = this.http
+      .put<FormsClienteViewModel>(this.apiUrl + 'clientes/' + cliente.id, cliente, this.obterHeadersAutorizacao())
+      .pipe(map(this.processarDados), catchError(this.processarFalha));
+
+    return resposta;
+  }
+
   public selelecionarTodos(): Observable<ListarClienteViewModel[]> {
     const resposta = this.http
       .get<ListarClienteViewModel[]>(this.apiUrl + 'clientes', this.obterHeadersAutorizacao())
@@ -30,6 +38,15 @@ export class ClienteService {
 
       return resposta;
   }
+
+  public selecionarPorId(id: string): Observable<FormsClienteViewModel> {
+    const resposta = this.http
+      .get<FormsClienteViewModel>(this.apiUrl + 'clientes/' + id, this.obterHeadersAutorizacao())
+      .pipe(map(this.processarDados), catchError(this.processarFalha));
+
+    return resposta;
+  }
+
 
   private obterHeadersAutorizacao() {
     const token = this.localStorageService.obterTokenUsuario();

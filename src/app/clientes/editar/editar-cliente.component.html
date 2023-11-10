@@ -1,0 +1,96 @@
+<div class="container">
+  <div class="row">
+    <!-- Conteúdo principal -->
+    <div class="col-12 col-md-10 col-lg-6 mx-auto mt-5">
+      <!-- Titulo -->
+      <div class="text-md-start">
+        <h1 class="fw-bold text-dark">
+            Editar Cliente
+          </h1>
+        <hr />
+      </div>
+
+      <form [formGroup]="formCliente" class="mt-4">
+        <div class="form-group mb-3 position-relative">
+          <label class="form-label">Nome:</label>
+          <input
+            [ngClass]="nome?.touched && nome?.invalid ? 'is-invalid' : ''"
+            formControlName="nome"
+            class="form-control"
+            type="text"
+            placeholder="Digite o nome do Cliente:"
+          />
+          <div class="invalid-tooltip" *ngIf="nome?.touched && nome?.invalid">
+            <span *ngIf="nome?.errors?.['required']">O nome precisa ser preenchido.</span>
+            <span *ngIf="nome?.errors?.['minlength']">O nome deve ter no mínimo 3 caracteres.</span>
+          </div>
+        </div>
+
+        <div class="form-group mb-3 position-relative">
+          <label class="form-label">Telefone:</label>
+          <input
+            [ngClass]="telefone?.touched && telefone?.invalid ? 'is-invalid' : ''"
+            formControlName="telefone"
+            class="form-control"
+            type="text"
+            placeholder="Digite o número do Cliente:"
+          />
+          <div class="invalid-tooltip" *ngIf="telefone?.touched && telefone?.invalid">
+            <span *ngIf="telefone?.errors?.['required']">O telefone deve ser preenchido.</span>
+            <span *ngIf="telefone?.errors?.['minlength']">O telefone ter no mínimo 9 caracteres.</span>
+          </div>
+        </div>
+
+        <div class="form-group mb-3 position-relative">
+          <label class="form-label">Email:</label>
+          <input
+            [ngClass]="email?.touched && email?.invalid ? 'is-invalid' : ''"
+            formControlName="email"
+            class="form-control"
+            type="text"
+            id="email"
+            placeholder="Digite o email do Cliente:"
+          />
+          <div class="invalid-tooltip" *ngIf="email?.touched && email?.invalid">
+            <span *ngIf="email?.errors?.['required']">O email precisa ser preenchido.</span>
+            <span *ngIf="email?.errors?.['email']">O email precisa seguir o formato "usuario@dominio.com".</span>
+          </div>
+        </div>
+
+        <div class="form-group mb-3 position-relative">
+          <label class="form-label">CNPJ:</label>
+          <input
+            [ngClass]="cnpj?.touched && cnpj?.invalid ? 'is-invalid' : ''"
+            formControlName="cnpj"
+            class="form-control"
+            type="text"
+            placeholder="Digite o CNPJ do Cliente:"
+          />
+          <div class="invalid-tooltip" *ngIf="cnpj?.touched && cnpj?.invalid">
+            <span *ngIf="cnpj?.errors?.['required']">O CNPJ precisa ser preenchido.</span>
+            <span *ngIf="cnpj?.errors?.['minlength']">O CNPJ deve ter 14 caracteres.</span>
+          </div>
+        </div>
+
+
+
+        <div class="card-footer g-grid d-flex gap-1 mt-5">
+          <button (click)="gravar()"
+            type="button" class="btn btn-dark px-5">
+            <i class="pi pi-save me-2"></i>
+            Gravar
+          </button>
+          <button routerLink="/clientes/listar"
+            type="button" class="btn btn-outline-warning px-5">
+            <i class="pi pi-arrow-left me-2"></i>
+            Voltar
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+
+

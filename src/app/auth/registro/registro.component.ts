@@ -7,6 +7,7 @@ import { TokenViewModel } from '../view-models/token.view-model';
 import { LocalStorageService } from '../services/local-storage.service';
 import { UsuarioService } from 'src/app/core/services/usuario.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-registro',
@@ -26,6 +27,7 @@ export class RegistroComponent implements OnInit {
     private localStorageService: LocalStorageService,
     private usuarioService: UsuarioService,
     private router: Router,
+    private toastr: ToastrService
     ) {
     titulo.setTitle('Registro - Controle Estofaria');
   }
@@ -57,14 +59,17 @@ export class RegistroComponent implements OnInit {
 
 
   public registrar() {
-    if (this.form.invalid) return;
+    if(this.form.invalid) {
+      this.toastr.warning('Por favor, preencha o formulário corretamente antes de prosseguir.','Aviso');
+      return;
+    };
 
     this.registroVM = Object.assign({}, this.registroVM, this.form.value);
 
     this.authService.registrarUsuario(this.registroVM)
      .subscribe({
       next: (registroRealizado) => this.processarSucesso(registroRealizado),
-      error: (erro) => this.processarFalha(erro)
+      error: (erro) => this.processarErro(erro)
      });
 
   }
@@ -75,7 +80,8 @@ export class RegistroComponent implements OnInit {
     this.router.navigate(['/dashboard']);
   }
 
-  private processarFalha(erro: any) {
+  private processarErro(erro: any) {
+    this.toastr.error(erro, 'Erro')
     console.log(erro);
   }
 }

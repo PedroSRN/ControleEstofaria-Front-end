@@ -7,6 +7,7 @@ import { UsuarioService } from 'src/app/core/services/usuario.service';
 import { Router } from '@angular/router';
 import { LocalStorageService } from '../services/local-storage.service';
 import { TokenViewModel } from '../view-models/token.view-model';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +26,8 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private localStorageService: LocalStorageService,
     private usuarioService: UsuarioService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {
     titulo.setTitle('Login - Controle Estofaria');
   }
@@ -46,13 +48,16 @@ export class LoginComponent implements OnInit {
   }
 
   public login() {
-    if(this.form.invalid) return;
+    if(this.form.invalid) {
+      this.toastr.warning('Por favor, preencha o formulário corretamente antes de prosseguir.','Aviso');
+      return;
+    };
 
     this.loginVM = Object.assign({}, this.loginVM, this.form.value);
 
     this.authService.login(this.loginVM).subscribe({
       next: (loginRealizado) => this.processarSucesso(loginRealizado),
-      error: (erro) => this.processarFalha(erro)
+      error: (erro) => this.processarErro(erro)
     })
   }
 
@@ -62,7 +67,8 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['/dashboard']);
   }
 
-  private processarFalha(erro: any) {
+  private processarErro(erro: any) {
+    this.toastr.error(erro, 'Erro')
     console.log(erro);
   }
 }
