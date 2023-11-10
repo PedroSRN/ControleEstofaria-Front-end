@@ -32,4 +32,9 @@ export class LocalStorageService {
   public obterTokenUsuario(): string {
     return localStorage.getItem('ControleEstofaria.token') ?? '';
   }
+
+  public limparDadosLocais(){
+    localStorage.removeItem('ControleEstofaria.token');
+    localStorage.removeItem('ControleEstofaria.usuario');
+  }
 }

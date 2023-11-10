@@ -24,7 +24,7 @@ import { CoreModule } from './core/core.module';
 
     CoreModule,
     AuthModule,
-    NavbarModule
+    NavbarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

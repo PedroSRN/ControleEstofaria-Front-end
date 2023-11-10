@@ -28,13 +28,20 @@ export class AuthService{
         return resposta;
     }
 
+    public logout(){
+      const resposta = this.http
+        .post(this.apiUrl + 'conta/sair', this.obterHeaderJson());
+
+      return resposta;
+    }
+
     private processarDados(resposta: any){
       if (resposta.sucesso)
         return resposta.dados;
     }
 
     private processarFalha(resposta: any) {
-      return throwError(() => new Error(resposta.Error(resposta.error.erros[0])));
+      return throwError(() => new Error(resposta.error.erros[0]));
     }
 
     private obterHeaderJson(){

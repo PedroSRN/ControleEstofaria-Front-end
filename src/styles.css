@@ -2,6 +2,7 @@
 
 * {
   font-family: 'Gemunu Libre', sans-serif;
+  font-size: 19px;
 }
 
 .bg-grey {
@@ -21,7 +22,7 @@
 }
 
 .nav-link:hover{
-  color: #093679 !important;
+  color: #cecb11 !important;
 }
 
 #img-redonda{

@@ -6,6 +6,8 @@ import { AuthGuard } from '../auth/services/auth.guard';
 import { InserirClienteComponent } from './inserir/inserir-cliente.component';
 import { EditarClienteComponent } from './editar/editar-cliente.component';
 import { FormsClienteResolver } from './services/forms-cliente.resolver';
+import { ExcluirClienteComponent } from './excluir/excluir-cliente.component';
+import { VisualizarClienteResolver } from './services/visualizar-cliente.resolver';
 
 const routes: Routes = [
 {
@@ -20,6 +22,11 @@ const routes: Routes = [
       component: EditarClienteComponent,
       resolve: { cliente: FormsClienteResolver }
     },
+    {
+      path: 'excluir/:id',
+      component: ExcluirClienteComponent,
+      resolve: {cliente: VisualizarClienteResolver }
+    }
   ]
 }
 

@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="row">
+    <!-- Conteúdo principal -->
+    <div class="col-12 col-md-10 col-lg-9 mx-auto my-5">
+      <!-- Titulo -->
+      <div class="text-md-start">
+
+        <div class="text-md-start">
+          <h1 class="fw-bold text-danger">
+              Excluir Cliente
+            </h1>
+          <hr />
+        </div>
+
+        <h2 class="fs-5">
+          Tem certeza que deseja excluir o cliente? <span class="fw-bolder fst-italic">"{{ clienteFormVM.nome }}" </span>?
+        </h2>
+      </div>
+
+      <dl class="form-group mt-4 row">
+
+        <dt class="col-md-4">
+          <label class="control-label">Nome:</label>
+        </dt>
+        <dd class="col-md-8">
+          {{ clienteFormVM.nome }}
+        </dd>
+        <dt class="col-md-4">
+          <label class="control-label">Telefone:</label>
+        </dt>
+        <dd class="col-md-8">
+          {{ clienteFormVM.telefone }}
+        </dd>
+        <dt class="col-md-4">
+          <label class="control-label">Email:</label>
+        </dt>
+        <dd class="col-md-8">
+          {{ clienteFormVM.email }}
+        </dd>
+        <dt class="col-md-4">
+          <label class="control-label">CNPJ:</label>
+        </dt>
+        <dd class="col-md-8">
+          {{ clienteFormVM.cnpj }}
+        </dd>
+      </dl>
+
+      <div class="card-footer g-grid d-flex gap-1 mt-5">
+        <button (click)="gravar()"
+          type="button" class="btn btn-dark px-5">
+          <i class="bi bi-trash-fill me-2"></i>
+          Excluir
+        </button>
+        <button routerLink="/clientes/listar"
+          type="button" class="btn btn-outline-warning px-5">
+          <i class="bi bi-arrow-return-left me-2"></i>
+          Voltar
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+

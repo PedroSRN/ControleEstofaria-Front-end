@@ -88,7 +88,7 @@ export class EditarClienteComponent  implements OnInit{
 
    private processarFalha(erro: any) {
     if(erro) {
-      this.toastr.error(erro, 'Ediçao de Clientes');
+      this.toastr.error(erro, 'Edição de Clientes');
 
       console.error(erro);
     }

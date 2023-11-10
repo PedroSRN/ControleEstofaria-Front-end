@@ -9,6 +9,8 @@ import { InserirClienteComponent } from './inserir/inserir-cliente.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EditarClienteComponent } from './editar/editar-cliente.component';
 import { FormsClienteResolver } from './services/forms-cliente.resolver';
+import { ExcluirClienteComponent } from './excluir/excluir-cliente.component';
+import { VisualizarClienteResolver } from './services/visualizar-cliente.resolver';
 
 
 @NgModule({
@@ -16,13 +18,14 @@ import { FormsClienteResolver } from './services/forms-cliente.resolver';
     ClienteAppComponent,
     ListarClienteComponent,
     InserirClienteComponent,
-    EditarClienteComponent
+    EditarClienteComponent,
+    ExcluirClienteComponent
   ],
   imports: [
     CommonModule,
     ClienteRoutingModule,
     ReactiveFormsModule
   ],
-  providers: [ClienteService, FormsClienteResolver]
+  providers: [ClienteService, FormsClienteResolver, VisualizarClienteResolver]
 })
 export class ClienteModule { }

@@ -5,6 +5,7 @@ import { environment } from "src/environments/environment";
 import { ListarClienteViewModel } from "../view-models/listar-cliente.view-model";
 import { LocalStorageService } from "src/app/auth/services/local-storage.service";
 import { FormsClienteViewModel } from "../view-models/forms-cliente.view-model";
+import { VisualizarClienteViewModel } from "../view-models/visualizar-cliente.view-model";
 
 @Injectable()
 export class ClienteService {
@@ -31,6 +32,14 @@ export class ClienteService {
     return resposta;
   }
 
+  public excluir(id: string): Observable<string> {
+    const resposta = this.http
+      .delete<string>(this.apiUrl + 'clientes/' + id, this.obterHeadersAutorizacao())
+      .pipe(map(this.processarDados), catchError(this.processarFalha));
+
+    return resposta;
+  }
+
   public selelecionarTodos(): Observable<ListarClienteViewModel[]> {
     const resposta = this.http
       .get<ListarClienteViewModel[]>(this.apiUrl + 'clientes', this.obterHeadersAutorizacao())
@@ -47,6 +56,13 @@ export class ClienteService {
     return resposta;
   }
 
+  public selecionarClienteCompletoPorId(id: string): Observable<VisualizarClienteViewModel> {
+    const resposta = this.http
+      .get<VisualizarClienteViewModel>(this.apiUrl + 'clientes/visualizacao-completa/' + id, this.obterHeadersAutorizacao())
+      .pipe(map(this.processarDados), catchError(this.processarFalha));
+
+    return resposta;
+  }
 
   private obterHeadersAutorizacao() {
     const token = this.localStorageService.obterTokenUsuario();
@@ -60,11 +76,13 @@ export class ClienteService {
   }
 
   private processarDados(resposta: any){
-    if (resposta.sucesso)
+    if (resposta?.sucesso)
       return resposta.dados;
+    else
+      return resposta;
   }
 
   private processarFalha(resposta: any) {
-    return throwError(() => new Error(resposta.Error(resposta.error.erros[0])));
+    return throwError(() => new Error(resposta.error.erros[0]));
   }
 }
