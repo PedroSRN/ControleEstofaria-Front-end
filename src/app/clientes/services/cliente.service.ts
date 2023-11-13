@@ -7,7 +7,9 @@ import { LocalStorageService } from "src/app/auth/services/local-storage.service
 import { FormsClienteViewModel } from "../view-models/forms-cliente.view-model";
 import { VisualizarClienteViewModel } from "../view-models/visualizar-cliente.view-model";
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class ClienteService {
   private apiUrl: string = environment.apiUrl;
 
@@ -40,7 +42,7 @@ export class ClienteService {
     return resposta;
   }
 
-  public selelecionarTodos(): Observable<ListarClienteViewModel[]> {
+  public selecionarTodos(): Observable<ListarClienteViewModel[]> {
     const resposta = this.http
       .get<ListarClienteViewModel[]>(this.apiUrl + 'clientes', this.obterHeadersAutorizacao())
       .pipe(map(this.processarDados), catchError(this.processarFalha));

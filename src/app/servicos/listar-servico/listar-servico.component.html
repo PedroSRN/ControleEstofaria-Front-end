@@ -1,0 +1,72 @@
+<div class="container">
+  <div class="row">
+
+    <!--  Conteudo principal  -->
+    <div class="col-12 col-md-10 col-lg-12 mx-auto mt-5">
+
+      <!-- Titulo -->
+      <div class="text-md-start">
+        <h1 class="fw-bold text-danger">
+          Lista de Serviços
+        </h1>
+        <hr />
+      </div>
+
+      <!-- Barra de Ações -->
+      <div class="g-grid d-flex gap-1 mt-5">
+        <a [routerLink]="['/servicos/inserir']" role="button" class="btn btn-dark me-md-1 col-md-2">
+          <i class="pi pi-plus-circle me-2"></i>
+          Novo Serviço
+        </a>
+      </div>
+
+      <!-- Listagem de Registros  -->
+      <div class="mt-3">
+        <table class="table table-light table-striped table-hover table-borderless">
+          <thead class="thead-dark text-center">
+            <tr>
+              <th>Nome do Serviço</th>
+              <th>Descrição</th>
+              <th>Data de Entrada</th>
+              <th>Data de Saída</th>
+              <th>Valor do Serviço</th>
+              <th>Forma de Pagamento</th>
+              <th>Status do Serviço</th>
+              <th>Nome do Cliente</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody class="text-center">
+            <tr *ngFor="let s of (servicos$ | async)">
+              <td>{{s.nomeServico}}</td>
+              <td>{{s.descricao}}</td>
+              <td>{{s.dataEntradaServico}}</td>
+              <td>{{s.dataSaidaServico | notDelivered}}</td>
+              <td>{{s.valorServico | currency: 'R$ '}}</td>
+              <td>{{s.formaPagamento}}</td>
+              <td>{{s.statusServico}}</td>
+              <td>{{s.nomeCliente}}</td>
+
+              <td class="d-grid d-md-block">
+                <button [routerLink]="['/servicos/editar', s.id]" type="button"
+                  class="btn btn-sm btn-warning me-0 me-md-1 mb-1 mb-md-auto">
+                  <i class="bi bi-pencil"></i>
+                </button>
+                <button [routerLink]="['/servicos/excluir', s.id]" type="button"
+                  class="btn btn-sm btn-outline-danger me-0 me-md-1 mb-1 mb-md-auto">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </td>
+
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+

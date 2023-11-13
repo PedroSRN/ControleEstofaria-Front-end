@@ -18,8 +18,8 @@ export class ListarClienteComponent implements OnInit{
 
 
   ngOnInit(): void {
-    this.clientes$ = this.clienteService.selelecionarTodos();
-    
+    this.clientes$ = this.clienteService.selecionarTodos();
+
   }
 
 }

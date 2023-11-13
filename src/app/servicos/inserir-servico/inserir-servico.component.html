@@ -1,0 +1,150 @@
+<div class="container">
+  <div class="row">
+    <!-- Conteúdo principal -->
+    <div class="col-12 col-md-10 col-lg-6 mx-auto mt-5">
+      <!-- Titulo -->
+      <div class="text-md-start">
+        <h1 class="fw-bold text-dark">
+            Inserir Novo Serviço
+          </h1>
+        <hr />
+      </div>
+
+      <form [formGroup]="formServico" class="mt-4">
+        <div class="form-group mb-3 position-relative">
+          <label class="form-label">Nome do Serviço:</label>
+          <input
+            [ngClass]="nomeServico?.touched && nomeServico?.invalid ? 'is-invalid' : ''"
+            formControlName="nomeServico"
+            class="form-control"
+            type="text"
+            placeholder="Digite o nome do serviço:"
+          />
+          <div class="invalid-tooltip" *ngIf="nomeServico?.touched && nomeServico?.invalid">
+            <span *ngIf="nomeServico?.errors?.['required']">O nome do servico precisa ser preenchido.</span>
+            <span *ngIf="nomeServico?.errors?.['minlength']">O nome do servico deve ter no mínimo 3 caracteres.</span>
+          </div>
+        </div>
+
+        <div class="form-group mb-3 position-relative">
+          <label class="form-label">Descrição:</label>
+          <input
+            [ngClass]="descricao?.touched && descricao?.invalid ? 'is-invalid' : ''"
+            formControlName="descricao"
+            class="form-control"
+            type="text"
+            placeholder="Digite o descrição do serviço:"
+          />
+          <div class="invalid-tooltip" *ngIf="descricao?.touched && descricao?.invalid">
+            <span *ngIf="descricao?.errors?.['required']">A descricao precisa ser preenchida.</span>
+            <span *ngIf="descricao?.errors?.['minlength']">A descricao deve ter no mínimo 6 caracteres.</span>
+          </div>
+        </div>
+
+        <div class="form-group mb-3 position-relative">
+          <label class="form-label">Data de Entrada:</label>
+          <input
+            [ngClass]="dataEntradaServico?.touched && dataEntradaServico?.invalid ? 'is-invalid' : ''"
+            formControlName="dataEntradaServico"
+            class="form-control"
+            type="date"
+            placeholder="Digite a data de entrada do serviço:"
+          />
+          <div class="invalid-tooltip" *ngIf="dataEntradaServico?.touched && dataEntradaServico?.invalid">
+            <span *ngIf="dataEntradaServico?.errors?.['required']">A data de entrada do serviço deve ser preenchida.</span>
+          </div>
+        </div>
+
+         <div class="form-group mb-3 position-relative">
+          <label class="form-label">Data de Saída:</label>
+          <input
+            [ngClass]="dataSaidaServico?.touched && dataSaidaServico?.invalid ? 'is-invalid' : ''"
+            formControlName="dataSaidaServico"
+            class="form-control"
+            type="date"
+            placeholder="Digite a data de saída do serviço:"
+          />
+          
+        </div>
+
+        <div class="form-group mb-3 position-relative">
+          <label class="form-label">Valor do Serviço:</label>
+          <input
+            [ngClass]="valorServico?.touched && valorServico?.invalid ? 'is-invalid' : ''"
+            currencyMask [options]="{  prefix: 'R$ ', thousands: '.', decimal: ',', align: 'left' }"
+            formControlName="valorServico"
+            class="form-control"
+            type="text"
+            placeholder="Digite o valor do serviço "
+          />
+          <div class="invalid-tooltip" *ngIf="valorServico?.touched && valorServico?.invalid">
+            <span *ngIf="valorServico?.errors?.['required']">O valor do servico precisa ser preenchido.</span>
+          </div>
+        </div>
+
+        <div class="form-group mb-3 position-relative">
+          <label class="form-label">Forma de Pagamento:</label>
+          <ng-select
+            [ngClass]="formaPagamento?.touched && formaPagamento?.invalid ? 'is-invalid' : ''"
+            formControlName="formaPagamento"
+            [clearable]="false"
+            [searchable]="false">
+            <ng-option *ngFor="let formaPagamento of formasPagamento; index as i" [value]="i" >
+              {{formaPagamento}}
+            </ng-option>
+          </ng-select>
+          <div class="invalid-tooltip" *ngIf="formaPagamento?.touched && formaPagamento?.invalid">
+            <span *ngIf="formaPagamento?.errors?.['required']">A forma de pagamento  precisa ser escolhida.</span>
+          </div>
+        </div>
+
+        <div class="form-group mb-3 position-relative">
+          <label class="form-label">Status do Serviço:</label>
+          <ng-select
+            [ngClass]="statusServico?.touched && statusServico?.invalid ? 'is-invalid' : ''"
+            formControlName="statusServico"
+            [clearable]="false"
+            [searchable]="false">
+            <ng-option *ngFor="let statusServico of statusDoServico; index as i" [value]="i" >
+              {{statusServico}}
+            </ng-option>
+          </ng-select>
+          <div class="invalid-tooltip" *ngIf="statusServico?.touched && statusServico?.invalid">
+            <span *ngIf="statusServico?.errors?.['required']">O status do servico precisa ser escolhido.</span>
+          </div>
+        </div>
+
+        <div class="form-group mb-3 position-relative">
+          <label class="form-label">Nome do Cliente:</label>
+          <ng-select class="custom" [ngClass]="clienteId?.touched && clienteId?.invalid ? 'is-invalid' : ''"
+          formControlName="clienteId" [clearable]="false" [searchable]="false">
+          <ng-option *ngFor="let cliente of (clientes | async) ;" [value]="cliente.id">
+            <!-- Observables | async -->
+            {{ cliente.nome }}
+          </ng-option>
+        </ng-select>
+          <!-- <div class="invalid-tooltip" *ngIf="assunto?.touched && assunto?.invalid">
+            <span *ngIf="assunto?.errors?.['minlength']">O nome do cliente deve ter no mínimo 3 caracteres.</span>
+          </div> -->
+        </div>
+
+
+        <div class="card-footer g-grid d-flex gap-1 mt-5">
+          <button (click)="gravar()"
+            type="button" class="btn btn-dark px-5">
+            <i class="pi pi-save me-2"></i>
+            Gravar
+          </button>
+          <button routerLink="/servicos/listar"
+            type="button" class="btn btn-outline-warning px-5">
+            <i class="pi pi-arrow-left me-2"></i>
+            Voltar
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+
