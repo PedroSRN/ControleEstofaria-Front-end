@@ -7,14 +7,16 @@ import { Title } from '@angular/platform-browser';
 import { ServicoService } from '../services/servico.service';
 import { ClienteService } from 'src/app/clientes/services/cliente.service';
 import { ToastrService } from 'ngx-toastr';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-inserir-servico',
-  templateUrl: './inserir-servico.component.html',
+  selector: 'app-editar-servico',
+  templateUrl: './editar-servico.component.html',
+  styles: [
+  ]
 
 })
-export class InserirServicoComponent implements OnInit {
+export class EditarServicoComponent implements OnInit {
   public formServico: FormGroup;
 
   public clientes = this.clienteService.selecionarTodos();
@@ -32,24 +34,38 @@ export class InserirServicoComponent implements OnInit {
     private formBuilder: FormBuilder,
     private servicoService: ServicoService,
     private clienteService: ClienteService,
-    private toastr: ToastrService,
-    private router: Router
-
+    private route: ActivatedRoute,
+    private router: Router,
+    private toastr: ToastrService
   ) {
-    titulo.setTitle('Cadastrar Servico - Controle Estofaria');
+    titulo.setTitle('Editar Servico - Controle Estofaria');
   }
 
   ngOnInit(): void {
+    this.servicoFormVM = this.route.snapshot.data['servico']
+
     this.formServico = this.formBuilder.group({
       nomeServico: ['', [Validators.required, Validators.minLength(3)]],
-      descricao: ['', [Validators.required, Validators.minLength(6)]],
       dataEntradaServico: ['', [Validators.required]],
+      descricao: ['', [Validators.required, Validators.minLength(6)]],
       dataSaidaServico: [''],
       valorServico: ['', [Validators.required]],
       formaPagamento: ['', [Validators.minLength(3)]],
       statusServico: ['', [Validators.minLength(3)]],
       cliente: ['', [Validators.minLength(3)]],
       clienteId: ['', [Validators.minLength(3)]],
+    });
+
+    this.formServico.patchValue({
+      id: this.servicoFormVM.id,
+      nomeServico: this.servicoFormVM.nomeServico,
+      descricao: this.servicoFormVM.descricao,
+      dataEntradaServico: this.servicoFormVM.dataEntradaServico.toString().split("T")[0],
+      dataSaidaServico: this.servicoFormVM.dataSaidaServico.toString().split("T")[0],
+      valorServico: this.servicoFormVM.valorServico,
+      formaPagamento: this.servicoFormVM.formaPagamento,
+      statusServico: this.servicoFormVM.statusServico,
+      clienteId: this.servicoFormVM.clienteId,
     })
   }
 
@@ -81,33 +97,32 @@ export class InserirServicoComponent implements OnInit {
     return this.formServico.get('clienteId');
   }
 
-    public gravar(){
+  public gravar() {
     if (this.formServico.invalid) {
       this.toastr.warning('Por favor, preencha o formulário corretamente antes de prosseguir.','Aviso');
       return;
-   };
+    };
 
-  this.servicoFormVM = Object.assign({}, this.servicoFormVM, this.formServico.value);
+    this.servicoFormVM = Object.assign({}, this.servicoFormVM, this.formServico.value);
 
-    this.servicoService.inserir(this.servicoFormVM)
+    this.servicoService.editar(this.servicoFormVM)
       .subscribe({
-        next: (servicoInserido) => this.processarSucesso(servicoInserido),
+        next: (servicoEditado) => this.processarSucesso(servicoEditado),
         error: (erro) => this.processarFalha(erro)
       })
   }
 
-
-  private processarSucesso(sessao: FormsServicoViewModel): void {
-    this.router.navigate(['/servicos/listar']);
-    this.toastr.success('Serviço Inserido com sucesso.','Inserção de Serviços');
-  }
-
-  private processarFalha(erro: any) {
-    if(erro) {
-      this.toastr.error(erro, 'Inserção de Serviços');
-      console.error(erro);
+    private processarSucesso(servico: FormsServicoViewModel): void {
+      this.router.navigate(['/servicos/listar']);
+      this.toastr.success('Serviço Editado com sucesso.','Edição de Serviços');
     }
-  }
+
+    private processarFalha(erro: any) {
+      if(erro) {
+        this.toastr.error(erro, 'Ediçao de Serviços');
+        console.error(erro);
+      }
+    }
+
+
 }
-
-

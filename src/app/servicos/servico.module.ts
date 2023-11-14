@@ -10,6 +10,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { ClienteService } from '../clientes/services/cliente.service';
 import { NotDeliveredPipe } from './services/verificarDataEntrega';
+import { EditarServicoComponent } from './editar-servico/editar-servico.component';
+import { FormsServicoResolver } from './services/forms-servico.resolver';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { NotDeliveredPipe } from './services/verificarDataEntrega';
     ServicoAppComponent,
     ListarServicoComponent,
     InserirServicoComponent,
-    NotDeliveredPipe
+    EditarServicoComponent,
+
+    NotDeliveredPipe //metodo está na pasta services
 
   ],
   imports: [
@@ -28,6 +32,6 @@ import { NotDeliveredPipe } from './services/verificarDataEntrega';
     NgSelectModule,
 
   ],
-  providers: [ServicoService, ClienteService]
+  providers: [ServicoService, ClienteService, FormsServicoResolver]
 })
 export class ServicoModule { }

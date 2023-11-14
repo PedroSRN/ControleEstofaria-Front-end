@@ -25,12 +25,28 @@ export class ServicoService {
     return resposta;
   }
 
+  public editar(servico: FormsServicoViewModel): Observable<FormsServicoViewModel> {
+    const resposta = this.http
+      .put<FormsServicoViewModel>(this.apiUrl + 'servicos/' + servico.id, servico, this.obterHeadersAutorizacao())
+      .pipe(map(this.processarDados), catchError(this.processarFalha));
+
+      return resposta;
+  }
+
   public selelecionarTodos(): Observable<ListarServicoViewModel[]> {
     const resposta = this.http
       .get<ListarServicoViewModel[]>(this.apiUrl + 'servicos', this.obterHeadersAutorizacao())
       .pipe(map(this.processarDados), catchError(this.processarFalha));
 
       return resposta;
+  }
+
+  public selecionarPorId(id: string): Observable<FormsServicoViewModel> {
+    const resposta = this.http
+      .get<FormsServicoViewModel>(this.apiUrl + 'servicos/' + id, this.obterHeadersAutorizacao())
+      .pipe(map(this.processarDados), catchError(this.processarFalha));
+
+    return resposta;
   }
 
   private obterHeadersAutorizacao() {
