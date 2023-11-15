@@ -6,6 +6,8 @@ import { ListarServicoComponent } from './listar-servico/listar-servico.componen
 import { InserirServicoComponent } from './inserir-servico/inserir-servico.component';
 import { EditarServicoComponent } from './editar-servico/editar-servico.component';
 import { FormsServicoResolver } from './services/forms-servico.resolver';
+import { ExcluirServicoComponent } from './excluir-servico/excluir-servico.component';
+import { VisualizarServicoResolver } from './services/visualizar-servico.resolver';
 
 const routes: Routes = [
   {
@@ -20,6 +22,11 @@ const routes: Routes = [
         component: EditarServicoComponent,
         resolve: { servico: FormsServicoResolver}
       },
+      {
+        path : 'excluir/:id',
+        component: ExcluirServicoComponent,
+        resolve: { servico: VisualizarServicoResolver}
+      }
     ]
   }
 ];

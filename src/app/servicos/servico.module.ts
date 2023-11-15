@@ -12,6 +12,8 @@ import { ClienteService } from '../clientes/services/cliente.service';
 import { NotDeliveredPipe } from './services/verificarDataEntrega';
 import { EditarServicoComponent } from './editar-servico/editar-servico.component';
 import { FormsServicoResolver } from './services/forms-servico.resolver';
+import { ExcluirServicoComponent } from './excluir-servico/excluir-servico.component';
+import { VisualizarServicoResolver } from './services/visualizar-servico.resolver';
 
 
 @NgModule({
@@ -20,9 +22,11 @@ import { FormsServicoResolver } from './services/forms-servico.resolver';
     ListarServicoComponent,
     InserirServicoComponent,
     EditarServicoComponent,
+    ExcluirServicoComponent,
 
-    NotDeliveredPipe //metodo está na pasta services
-
+    //pipes
+    NotDeliveredPipe, //metodo está na pasta services
+    //
   ],
   imports: [
     CommonModule,
@@ -32,6 +36,6 @@ import { FormsServicoResolver } from './services/forms-servico.resolver';
     NgSelectModule,
 
   ],
-  providers: [ServicoService, ClienteService, FormsServicoResolver]
+  providers: [ServicoService, ClienteService, FormsServicoResolver, VisualizarServicoResolver]
 })
 export class ServicoModule { }

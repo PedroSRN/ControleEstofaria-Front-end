@@ -1,0 +1,101 @@
+<div class="container">
+  <div class="row">
+    <!-- Conteúdo principal -->
+    <div class="col-12 col-md-10 col-lg-9 mx-auto my-5">
+      <!-- Titulo -->
+      <div class="text-md-start">
+
+        <div class="text-md-start">
+          <h1 class="fw-bold text-danger">
+              Excluir Serviço
+            </h1>
+          <hr />
+        </div>
+
+        <h2 class="fs-5">
+          Tem certeza que deseja excluir o serviço? <span class="fw-bolder fst-italic">"{{ servicoFormVM.nomeServico }}" </span>?
+        </h2>
+      </div>
+
+      <dl class="form-group mt-4 row">
+
+        <dt class="col-md-4">
+          <label class="control-label">Nome do serviço:</label>
+        </dt>
+        <dd class="col-md-8">
+          {{ servicoFormVM.nomeServico }}
+        </dd>
+
+        <dt class="col-md-4">
+          <label class="control-label">Descrição:</label>
+        </dt>
+        <dd class="col-md-8">
+          {{ servicoFormVM.descricao }}
+        </dd>
+
+        <dt class="col-md-4">
+          <label class="control-label">Data de entrada do serviço:</label>
+        </dt>
+        <dd class="col-md-8">
+          {{ servicoFormVM.dataEntradaServico | date: 'dd/MM/yyyy' }}
+        </dd>
+
+        <dt class="col-md-4">
+          <label class="control-label">Data de saída do serviço:</label>
+        </dt>
+        <dd class="col-md-8">
+          {{ servicoFormVM.dataSaidaServico | date: 'dd/MM/yyyy' }}
+        </dd>
+
+        <dt class="col-md-4">
+          <label class="control-label">Valor do servico:</label>
+        </dt>
+        <dd class="col-md-8">
+          {{ servicoFormVM.valorServico | currency: 'R$ ' }}
+
+        </dd>
+
+        <dt class="col-md-4">
+          <label class="control-label">Forma de pagamento:</label>
+        </dt>
+        <dd class="col-md-8">
+          {{ servicoFormVM.formaPagamento }}
+        </dd>
+
+        <dt class="col-md-4">
+          <label class="control-label">Status do Serviço:</label>
+        </dt>
+        <dd class="col-md-8">
+          {{ servicoFormVM.statusServico }}
+        </dd>
+
+
+
+        <dt class="col-md-4">
+          <label class="control-label">Nome do Cliente:</label>
+        </dt>
+        <dd class="col-md-8">
+          {{ servicoFormVM.cliente.nome }}
+        </dd>
+
+      </dl>
+
+      <div class="card-footer g-grid d-flex gap-1 mt-5">
+        <button (click)="gravar()"
+          type="button" class="btn btn-dark px-5">
+          <i class="bi bi-trash-fill me-2"></i>
+          Excluir
+        </button>
+        <button routerLink="/servicos/listar"
+          type="button" class="btn btn-outline-warning px-5">
+          <i class="bi bi-arrow-return-left me-2"></i>
+          Voltar
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
