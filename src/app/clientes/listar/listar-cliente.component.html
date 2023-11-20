@@ -35,9 +35,9 @@
           <tbody class="text-center">
             <tr *ngFor="let c of (clientes$ | async)">
               <td>{{c.nome}}</td>
-              <td>{{c.telefone}}</td>
+              <td>{{c.telefone | mask: '(00) 0000-00009'}}</td>
               <td>{{c.email}}</td>
-              <td>{{c.cnpj}}</td>
+              <td>{{c.cnpj | mask: '00.000.000/0000-00'}}</td>
 
               <td class="d-grid d-md-block">
                 <button [routerLink]="['/clientes/editar', c.id]" type="button"

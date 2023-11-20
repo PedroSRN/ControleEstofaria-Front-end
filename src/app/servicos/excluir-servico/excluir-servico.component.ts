@@ -38,6 +38,12 @@ export class ExcluirServicoComponent implements OnInit{
     })
   }
 
+  formatarData(dataCompleta: string): string {
+    const partes = dataCompleta.split(' '); // Divide a data e a hora
+    const data = partes[0]; // Pega a parte da data
+    return data;
+  }
+
   private processarSucesso(sessaoId: string): void {
     this.router.navigate(['/servicos/listar']);
     this.toastr.success('Servico Exclúido com sucesso.','Exclusão de Serviços');

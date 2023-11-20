@@ -19,9 +19,12 @@
             class="form-control"
             type="text"
             placeholder="Digite o nome do cliente:"
-          />
+            
+
+            />
           <div class="invalid-tooltip" *ngIf="nome?.touched && nome?.invalid">
             <span *ngIf="nome?.errors?.['required']">O nome precisa ser preenchido.</span>
+            <span *ngIf="nome?.errors?.['pattern']">O nome deve conter apenas letras.</span>
             <span *ngIf="nome?.errors?.['minlength']">O nome deve ter no mínimo 3 caracteres.</span>
           </div>
         </div>
@@ -34,6 +37,7 @@
             class="form-control"
             type="text"
             placeholder="Digite o número do cliente:"
+            mask="(00) 0000-00009"
           />
           <div class="invalid-tooltip" *ngIf="telefone?.touched && telefone?.invalid">
             <span *ngIf="telefone?.errors?.['required']">O telefone deve ser preenchido.</span>
@@ -65,6 +69,7 @@
             class="form-control"
             type="text"
             placeholder="Digite o CNPJ do cliente:"
+            mask="00.000.000/0000-00"
           />
           <div class="invalid-tooltip" *ngIf="cnpj?.touched && cnpj?.invalid">
             <span *ngIf="cnpj?.errors?.['required']">O CNPJ precisa ser preenchido.</span>

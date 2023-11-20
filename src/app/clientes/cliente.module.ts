@@ -11,6 +11,7 @@ import { EditarClienteComponent } from './editar/editar-cliente.component';
 import { FormsClienteResolver } from './services/forms-cliente.resolver';
 import { ExcluirClienteComponent } from './excluir/excluir-cliente.component';
 import { VisualizarClienteResolver } from './services/visualizar-cliente.resolver';
+import { IConfig, NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask'
 
 
 @NgModule({
@@ -24,8 +25,10 @@ import { VisualizarClienteResolver } from './services/visualizar-cliente.resolve
   imports: [
     CommonModule,
     ClienteRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxMaskDirective,
+    NgxMaskPipe,
   ],
-  providers: [ClienteService, FormsClienteResolver, VisualizarClienteResolver]
+  providers: [ClienteService, FormsClienteResolver, VisualizarClienteResolver,provideNgxMask()]
 })
 export class ClienteModule { }

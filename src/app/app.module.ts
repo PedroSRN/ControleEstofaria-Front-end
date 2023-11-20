@@ -9,6 +9,8 @@ import { AuthModule } from './auth/auth.module';
 import { ToastrModule } from 'ngx-toastr';
 import { HttpClientModule } from '@angular/common/http';
 import { CoreModule } from './core/core.module';
+import { IConfig, NgxMaskDirective, NgxMaskPipe } from 'ngx-mask'
+
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { CoreModule } from './core/core.module';
     HttpClientModule,
     NgbModule,
     ToastrModule.forRoot(),
+    NgxMaskDirective,
+    NgxMaskPipe,
 
     CoreModule,
     AuthModule,

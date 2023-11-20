@@ -29,7 +29,7 @@
           <label class="control-label">Telefone:</label>
         </dt>
         <dd class="col-md-8">
-          {{ clienteFormVM.telefone }}
+          {{ clienteFormVM.telefone  | mask: '(00) 0000-00009' }}
         </dd>
         <dt class="col-md-4">
           <label class="control-label">Email:</label>
@@ -41,7 +41,7 @@
           <label class="control-label">CNPJ:</label>
         </dt>
         <dd class="col-md-8">
-          {{ clienteFormVM.cnpj }}
+          {{ clienteFormVM.cnpj | mask: '00.000.000/0000-00' }}
         </dd>
       </dl>
 

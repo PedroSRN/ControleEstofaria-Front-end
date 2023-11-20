@@ -44,7 +44,7 @@ export class InserirServicoComponent implements OnInit {
       nomeServico: ['', [Validators.required, Validators.minLength(3)]],
       descricao: ['', [Validators.required, Validators.minLength(6)]],
       dataEntradaServico: ['', [Validators.required]],
-      dataSaidaServico: [''],
+      //dataSaidaServico: [''],
       valorServico: ['', [Validators.required]],
       formaPagamento: ['', [Validators.minLength(3)]],
       statusServico: ['', [Validators.minLength(3)]],

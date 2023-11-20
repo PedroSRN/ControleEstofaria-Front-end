@@ -14,6 +14,7 @@ import { EditarServicoComponent } from './editar-servico/editar-servico.componen
 import { FormsServicoResolver } from './services/forms-servico.resolver';
 import { ExcluirServicoComponent } from './excluir-servico/excluir-servico.component';
 import { VisualizarServicoResolver } from './services/visualizar-servico.resolver';
+import { IConfig, NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask'
 
 
 @NgModule({
@@ -34,8 +35,10 @@ import { VisualizarServicoResolver } from './services/visualizar-servico.resolve
     ReactiveFormsModule,
     CurrencyMaskModule,
     NgSelectModule,
+    NgxMaskDirective,
+    NgxMaskPipe,
 
   ],
-  providers: [ServicoService, ClienteService, FormsServicoResolver, VisualizarServicoResolver]
+  providers: [ServicoService, ClienteService, FormsServicoResolver, VisualizarServicoResolver,provideNgxMask()]
 })
 export class ServicoModule { }

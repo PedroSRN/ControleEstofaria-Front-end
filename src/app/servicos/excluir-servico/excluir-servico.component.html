@@ -37,21 +37,21 @@
           <label class="control-label">Data de entrada do serviço:</label>
         </dt>
         <dd class="col-md-8">
-          {{ servicoFormVM.dataEntradaServico | date: 'dd/MM/yyyy' }}
+          <span>{{ formatarData (servicoFormVM.dataEntradaServico) }}</span>
         </dd>
 
         <dt class="col-md-4">
           <label class="control-label">Data de saída do serviço:</label>
         </dt>
         <dd class="col-md-8">
-          {{ servicoFormVM.dataSaidaServico | date: 'dd/MM/yyyy' }}
+          <span>{{ formatarData(servicoFormVM.dataSaidaServico) | notDelivered }}</span>
         </dd>
 
         <dt class="col-md-4">
           <label class="control-label">Valor do servico:</label>
         </dt>
         <dd class="col-md-8">
-          {{ servicoFormVM.valorServico | currency: 'R$ ' }}
+          {{ servicoFormVM.valorServico }}
 
         </dd>
 
