@@ -14,19 +14,22 @@ import { EditarServicoComponent } from './editar-servico/editar-servico.componen
 import { FormsServicoResolver } from './services/forms-servico.resolver';
 import { ExcluirServicoComponent } from './excluir-servico/excluir-servico.component';
 import { VisualizarServicoResolver } from './services/visualizar-servico.resolver';
-import { IConfig, NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask'
+import { IConfig, NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
+import { ListarServicoProntoComponent } from './listar-servico-pronto/listar-servico-pronto.component'
 
 
 @NgModule({
   declarations: [
     ServicoAppComponent,
-    ListarServicoComponent,
     InserirServicoComponent,
     EditarServicoComponent,
     ExcluirServicoComponent,
+    ListarServicoComponent,
+    ListarServicoProntoComponent,
 
     //pipes
-    NotDeliveredPipe, //metodo está na pasta services
+    NotDeliveredPipe,
+      //metodo está na pasta services
     //
   ],
   imports: [

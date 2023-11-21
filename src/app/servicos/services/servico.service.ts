@@ -50,6 +50,14 @@ export class ServicoService {
       return resposta;
   }
 
+  public selelecionarServicosProntos(): Observable<ListarServicoViewModel[]> {
+    const resposta = this.http
+      .get<ListarServicoViewModel[]>(this.apiUrl + 'servicos/Selecionar-Servicos-Prontos', this.obterHeadersAutorizacao())
+      .pipe(map(this.processarDados), catchError(this.processarFalha));
+
+      return resposta;
+  }
+
   public selecionarPorId(id: string): Observable<FormsServicoViewModel> {
     const resposta = this.http
       .get<FormsServicoViewModel>(this.apiUrl + 'servicos/' + id, this.obterHeadersAutorizacao())

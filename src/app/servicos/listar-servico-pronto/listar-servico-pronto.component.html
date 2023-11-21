@@ -7,22 +7,19 @@
       <!-- Titulo -->
       <div class="text-md-start">
         <h1 class="fw-bold text-danger">
-          Lista de Serviços
+          Lista de Serviços Prontos
         </h1>
         <hr />
       </div>
 
       <!-- Barra de Ações -->
       <div class="g-grid d-flex gap-1 mt-5">
-        <a [routerLink]="['/servicos/inserir']" role="button" class="btn btn-dark me-md-1 col-md-2">
+        <a [routerLink]="['/servicos/listar']" role="button" class="btn btn-dark me-md-1 col-md-2">
           <i class="pi pi-plus-circle me-2"></i>
-          Novo Serviço
-        </a>
-        <a [routerLink]="['/servicos/listar-pronto']" role="button" class="btn btn-dark me-md-1 col-md-2">
-          <i class="pi pi-plus-circle me-2"></i>
-          Lista de Serviços Prontos
+          Todos os Serviços
         </a>
       </div>
+      
 
       <!-- Listagem de Registros  -->
       <div class="mt-3">
@@ -41,7 +38,7 @@
             </tr>
           </thead>
           <tbody class="text-center">
-            <tr *ngFor="let s of (servicos$ | async)">
+            <tr *ngFor="let s of (servicosProntos$ | async)">
               <td>{{s.nomeServico}}</td>
               <td>{{s.descricao}}</td>
               <td>{{s.dataEntradaServico}}</td>
@@ -70,6 +67,7 @@
     </div>
   </div>
 </div>
+
 
 
 

@@ -8,6 +8,7 @@ import { EditarServicoComponent } from './editar-servico/editar-servico.componen
 import { FormsServicoResolver } from './services/forms-servico.resolver';
 import { ExcluirServicoComponent } from './excluir-servico/excluir-servico.component';
 import { VisualizarServicoResolver } from './services/visualizar-servico.resolver';
+import { ListarServicoProntoComponent } from './listar-servico-pronto/listar-servico-pronto.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,7 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'listar', pathMatch: 'full' },
       { path: 'listar', component: ListarServicoComponent },
+      { path: 'listar-pronto', component: ListarServicoProntoComponent },
       { path: 'inserir', component: InserirServicoComponent },
       {
         path: 'editar/:id',
