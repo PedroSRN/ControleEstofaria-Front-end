@@ -1,0 +1,82 @@
+<div class="container">
+  <div class="row">
+
+    <!--  Conteudo principal  -->
+    <div class="col-12 col-md-10 col-lg-12 mx-auto mt-5">
+
+      <!-- Titulo -->
+      <div class="text-md-start">
+        <h1 class="fw-bold text-danger">
+          Calcular Serviços Por Periodo
+        </h1>
+        <hr />
+      </div>
+
+      <!-- Barra de Ações -->
+      <div class="g-grid d-flex gap-1 mt-5">
+        <a [routerLink]="['/servicos/listar-pronto']" role="button" class="btn btn-dark me-md-1 col-md-2">
+          <i class="pi pi-plus-circle me-2"></i>
+          Lista de Serviços Prontos
+        </a>
+        <a [routerLink]="['/servicos/listar']" role="button" class="btn btn-dark me-md-1 col-md-2">
+          <i class="pi pi-plus-circle me-2"></i>
+          Todos os Serviços
+        </a>
+      </div>
+
+      <form [formGroup]="formServicoPronto" class="mt-4">
+        <div class="form-group mb-3 position-relative d-flex">
+          <div class="mr-5 me-3">
+            <label class="form-label">Data de Início:</label>
+            <input
+              [ngClass]="dataInicio?.touched && dataInicio?.invalid ? 'is-invalid' : ''"
+              formControlName="dataInicio"
+              class="form-control"
+              type="date"
+              placeholder="Digite a data de início do serviço:"
+            />
+            <div class="invalid-tooltip" *ngIf="dataInicio?.touched && dataInicio?.invalid">
+              <span *ngIf="dataInicio?.errors?.['required']">A data de início do serviço pronto deve ser preenchida.</span>
+            </div>
+          </div>
+
+          <div class="ml-2 me-3">
+            <label class="form-label">Data de Fim:</label>
+            <input
+              [ngClass]="dataFim?.touched && dataFim?.invalid ? 'is-invalid' : ''"
+              formControlName="dataFim"
+              class="form-control"
+              type="date"
+              placeholder="Digite a data de Fim do serviço:"
+            />
+            <div class="invalid-tooltip" *ngIf="dataFim?.touched && dataFim?.invalid">
+              <span *ngIf="dataInicio?.errors?.['required']">A data de Fim do serviço pronto deve ser preenchida.</span>
+            </div>
+          </div>
+
+          <div class="mt-4 align-center ">
+            <button (click)="somarServicos()"
+              type="button" class="btn btn-success ml-2">
+              <i class="pi pi-save me-2"></i>
+              Valor Total dos Serviços
+            </button>
+          </div>
+        </div>
+
+        <!-- Valor -->
+        <div class="text-md-start">
+          <h1 class="fw-bold text-dark mt-5">
+            Valor Total dos Serviços no Período: R$: {{ valorServicosProntos }}
+          </h1>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+

@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, catchError, map, throwError } from "rxjs";
 import { LocalStorageService } from "src/app/auth/services/local-storage.service";
@@ -55,8 +55,48 @@ export class ServicoService {
       .get<ListarServicoViewModel[]>(this.apiUrl + 'servicos/Selecionar-Servicos-Prontos', this.obterHeadersAutorizacao())
       .pipe(map(this.processarDados), catchError(this.processarFalha));
 
+      console.log(resposta);
       return resposta;
+
   }
+ //-------------------------------------------------------------------------------------
+
+ public selecionarServicosProntosPorPeriodo(dataInicio: Date, dataFim: Date): Observable<any> {
+  const formatDate = (date: Date) => {
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear();
+    return `${year}-${month}-${day}`;
+  };
+
+  const params = new HttpParams()
+    .set('dataInicio', formatDate(dataInicio))
+    .set('dataFim', formatDate(dataFim));
+
+  const headers = this.obterHeadersAutorizacao();
+
+  return this.http.get(`${this.apiUrl}servicos/Selecionar-Servicos-Prontos-Por-Periodo`, { params, ...headers});
+}
+//===================================================================================================
+
+public somarServicosProntosPorPeriodo(dataInicio: Date, dataFim: Date): Observable<number> {
+  const formatDate = (date: Date) => {
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear();
+    return `${year}-${month}-${day}`;
+  };
+
+  const params = new HttpParams()
+    .set('dataInicio', formatDate(dataInicio))
+    .set('dataFim', formatDate(dataFim));
+  const headers = this.obterHeadersAutorizacao();
+
+  return this.http.get<number>(`${this.apiUrl}servicos/Somar-Servicos-Prontos-Por-Periodo`, { params, ...headers });
+}
+
+
+//-------------------------------------------------------------------------------------
 
   public selecionarPorId(id: string): Observable<FormsServicoViewModel> {
     const resposta = this.http

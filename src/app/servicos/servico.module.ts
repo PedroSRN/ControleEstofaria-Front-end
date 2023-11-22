@@ -15,7 +15,8 @@ import { FormsServicoResolver } from './services/forms-servico.resolver';
 import { ExcluirServicoComponent } from './excluir-servico/excluir-servico.component';
 import { VisualizarServicoResolver } from './services/visualizar-servico.resolver';
 import { IConfig, NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
-import { ListarServicoProntoComponent } from './listar-servico-pronto/listar-servico-pronto.component'
+import { ListarServicoProntoComponent } from './listar-servico-pronto/listar-servico-pronto.component';
+import { ListarServicoProntoPorPeriodoComponent } from './listar-servico-pronto-por-periodo/listar-servico-pronto-por-periodo.component'
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { ListarServicoProntoComponent } from './listar-servico-pronto/listar-ser
     ExcluirServicoComponent,
     ListarServicoComponent,
     ListarServicoProntoComponent,
+    ListarServicoProntoPorPeriodoComponent,
 
     //pipes
     NotDeliveredPipe,

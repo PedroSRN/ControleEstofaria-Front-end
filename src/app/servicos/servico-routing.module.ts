@@ -9,6 +9,7 @@ import { FormsServicoResolver } from './services/forms-servico.resolver';
 import { ExcluirServicoComponent } from './excluir-servico/excluir-servico.component';
 import { VisualizarServicoResolver } from './services/visualizar-servico.resolver';
 import { ListarServicoProntoComponent } from './listar-servico-pronto/listar-servico-pronto.component';
+import { ListarServicoProntoPorPeriodoComponent } from './listar-servico-pronto-por-periodo/listar-servico-pronto-por-periodo.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'listar', pathMatch: 'full' },
       { path: 'listar', component: ListarServicoComponent },
       { path: 'listar-pronto', component: ListarServicoProntoComponent },
+      { path: 'listar-pronto-por-periodo', component: ListarServicoProntoPorPeriodoComponent },
       { path: 'inserir', component: InserirServicoComponent },
       {
         path: 'editar/:id',
