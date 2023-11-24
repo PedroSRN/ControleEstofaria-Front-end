@@ -13,6 +13,8 @@ import { Router } from '@angular/router';
 export class ListarServicoProntoPorPeriodoComponent implements OnInit {
   public servicosProntosPorPeriodo$: Observable<ListarServicoViewModel[]>
 
+
+
   public formServicoPronto: FormGroup;
   valorServicosProntos: number | undefined;
 
@@ -22,8 +24,6 @@ export class ListarServicoProntoPorPeriodoComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private toastr: ToastrService,
-
-
     ){
 
   }
@@ -34,6 +34,8 @@ export class ListarServicoProntoPorPeriodoComponent implements OnInit {
       dataFim: ['', [Validators.required]],
 
     })
+
+
   }
   get dataInicio() {
     return this.formServicoPronto.get('dataInicio');
@@ -46,23 +48,29 @@ export class ListarServicoProntoPorPeriodoComponent implements OnInit {
     if (this.formServicoPronto.invalid) {
       this.toastr.warning('Por favor, preencha o formulário corretamente antes de prosseguir.','Aviso');
       return;
-  };
+    };
 
-  // Converte as strings de data para objetos Date, se necessário
-  const dataInicio = this.parseDataString(this.dataInicio?.value);
-  const dataFim = this.parseDataString(this.dataFim?.value);
+    // Converte as strings de data para objetos Date, se necessário
+    const dataInicio = this.parseDataString(this.dataInicio?.value);
+    const dataFim = this.parseDataString(this.dataFim?.value);
 
 
-  this.servicoService.somarServicosProntosPorPeriodo(dataInicio, dataFim)
-    .subscribe(valor => {
-      console.log('Valor de Serviços Prontos: ', valor);
+    this.servicoService.somarServicosProntosPorPeriodo(dataInicio, dataFim)
+      .subscribe(valor => {
+        console.log('Valor de Serviços Prontos: ', valor);
 
-      // Faça o que for necessário com o valor, como exibir no seu template.
-      // Por exemplo, você pode atribuir o valor a uma propriedade do componente para exibi-lo no template.
-      this.valorServicosProntos = valor;
-    });
+        this.valorServicosProntos = valor;
 
- }
+        // Chama a função para selecionar os serviços e atualizar a tabela
+        this.atualizarServicos(dataInicio, dataFim);
+      });
+    }
+
+    // Função para atualizar os serviços na tabela
+    private atualizarServicos(dataInicio: Date, dataFim: Date) {
+      this.servicosProntosPorPeriodo$ = this.servicoService.selecionarServicosProntosPorPeriodo(dataInicio, dataFim);
+    }
+
     // Função auxiliar para converter strings de data em objetos Date
     private parseDataString(dataString: string): Date {
       const parsedDate = new Date(dataString);

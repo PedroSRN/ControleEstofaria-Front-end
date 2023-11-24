@@ -57,11 +57,10 @@ export class ServicoService {
 
       console.log(resposta);
       return resposta;
-
   }
- //-------------------------------------------------------------------------------------
 
- public selecionarServicosProntosPorPeriodo(dataInicio: Date, dataFim: Date): Observable<any> {
+ //-------------------------------------------------------------------------------------
+ public selecionarServicosProntosPorPeriodo(dataInicio: Date, dataFim: Date): Observable<ListarServicoViewModel[]> {
   const formatDate = (date: Date) => {
     const day = date.getDate().toString().padStart(2, '0');
     const month = (date.getMonth() + 1).toString().padStart(2, '0');
@@ -75,8 +74,29 @@ export class ServicoService {
 
   const headers = this.obterHeadersAutorizacao();
 
-  return this.http.get(`${this.apiUrl}servicos/Selecionar-Servicos-Prontos-Por-Periodo`, { params, ...headers});
+  return this.http
+    .get<ListarServicoViewModel[]>(`${this.apiUrl}servicos/Selecionar-Servicos-Prontos-Por-Periodo`, { params, ...headers })
+    .pipe(map(this.processarDados), catchError(this.processarFalha));
 }
+
+
+
+//  public selecionarServicosProntosPorPeriodo(dataInicio: Date, dataFim: Date): Observable<any> {
+//   const formatDate = (date: Date) => {
+//     const day = date.getDate().toString().padStart(2, '0');
+//     const month = (date.getMonth() + 1).toString().padStart(2, '0');
+//     const year = date.getFullYear();
+//     return `${year}-${month}-${day}`;
+//   };
+
+//   const params = new HttpParams()
+//     .set('dataInicio', formatDate(dataInicio))
+//     .set('dataFim', formatDate(dataFim));
+
+//   const headers = this.obterHeadersAutorizacao();
+
+//   return this.http.get(`${this.apiUrl}servicos/Selecionar-Servicos-Prontos-Por-Periodo`, { params, ...headers});
+// }
 //===================================================================================================
 
 public somarServicosProntosPorPeriodo(dataInicio: Date, dataFim: Date): Observable<number> {
