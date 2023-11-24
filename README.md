@@ -1,27 +1,14 @@
-# ControleEstofariaFrontEnd
+# ControleDeCinema - Front-End
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.3.
+Este projeto foi gerado com [Angular CLI](https://github.com/angular/angular-cli) version 15.0.3.
 
-## Development server
+# Para o Front-End:
+- Abra o terminal e insira o comando “ng serve -o” e irá abrir no seu navegador a tela de início da aplicação;
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+# Na aplicação:
+- Em seu início a aplicação pedirá para que o usuário entre com seus dados de acesso, para executar esse passo deverá se cadastrar e poderá fazer isso através da opção “Clique aqui e cadastre-se!”;
 
-## Code scaffolding
+- Para se cadastrar você informará seu nome, um email de sua preferência e uma senha que deverá possuir mais de 6 dígitos, uma letra maiúscula e um caractere especial, mas a aplicação irá lhe orientar caso não tenha informado algum destes; 
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+# Sobre a aplicação:
+A aplicação é um sistema gerenciador de estofaria que faz o gerenciamento de clientes e serviços tendo a possibilidade de somar os serviços prontos em um determinado período, para sua criação foram utilizados C# para a parte do seu Back-End além do Angular e Typescript para a criação do seu Front-End;
