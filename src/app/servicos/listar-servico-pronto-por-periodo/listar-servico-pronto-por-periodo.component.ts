@@ -63,6 +63,12 @@ export class ListarServicoProntoPorPeriodoComponent implements OnInit {
 
         // Chama a função para selecionar os serviços e atualizar a tabela
         this.atualizarServicos(dataInicio, dataFim);
+
+        if(valor == 0)
+        {
+          this.toastr.warning('Não há nenhum serviço no período selecionado.','Aviso');
+          return;
+        }
       });
     }
 
@@ -73,7 +79,14 @@ export class ListarServicoProntoPorPeriodoComponent implements OnInit {
 
     // Função auxiliar para converter strings de data em objetos Date
     private parseDataString(dataString: string): Date {
-      const parsedDate = new Date(dataString);
+      // Divide a string de data em partes (dia, mês, ano)
+      const [ano, mes, dia] = dataString.split('-').map(Number);
+
+      // Cria um novo objeto Date apenas com ano, mês e dia
+      const parsedDate = new Date(ano, mes - 1, dia); // O mês é baseado em zero (0 para janeiro, 11 para dezembro)
+
+      // Verifica se o objeto Date é inválido
+      // Se for inválido, retorna a data e hora atual
       return isNaN(parsedDate.getTime()) ? new Date() : parsedDate;
     }
 }
