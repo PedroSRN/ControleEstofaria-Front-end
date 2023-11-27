@@ -8,6 +8,7 @@ import { LocalStorageService } from './auth/services/local-storage.service';
   template : `
   <app-navbar></app-navbar>
   <router-outlet></router-outlet>
+  <app-footer></app-footer>
   `
 })
 export class AppComponent {

@@ -28,3 +28,12 @@
 #img-redonda{
   border-radius: 5%;
 }
+
+.footer {
+  margin-top: 10%;
+  background-color: #343a40; /* Cor de fundo do rodapé, ajuste conforme necessário */
+  color: white; /* Cor do texto no rodapé, ajuste conforme necessário */
+  padding-top: 20px; /* Espaçamento interno superior no rodapé, ajuste conforme necessário */
+  padding-bottom: 20px; /* Espaçamento interno inferior no rodapé, ajuste conforme necessário */
+  margin-bottom: 0; /* Remova a margem inferior para evitar espaço em branco abaixo do rodapé */
+}

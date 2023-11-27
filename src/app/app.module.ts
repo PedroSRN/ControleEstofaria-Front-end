@@ -9,12 +9,14 @@ import { AuthModule } from './auth/auth.module';
 import { ToastrModule } from 'ngx-toastr';
 import { HttpClientModule } from '@angular/common/http';
 import { CoreModule } from './core/core.module';
-import { IConfig, NgxMaskDirective, NgxMaskPipe } from 'ngx-mask'
+import { IConfig, NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
+import { FooterComponent } from './footer/footer.component'
+import { FooterModule } from './footer/footer.module';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,6 +31,7 @@ import { IConfig, NgxMaskDirective, NgxMaskPipe } from 'ngx-mask'
     CoreModule,
     AuthModule,
     NavbarModule,
+    FooterModule
   ],
   providers: [],
   bootstrap: [AppComponent]
